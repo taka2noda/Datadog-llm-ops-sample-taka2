@@ -30,7 +30,7 @@ DD_LLMOBS_ML_APP=<YOUR_ML_APP_NAME> ddtrace-run <YOUR_APP_STARTUP_COMMAND>
 
 Command Sample
 ```
-DD_LLMOBS_ENABLED=1 DD_LLMOBS_ML_APP=br-chat1 \
+DD_LLMOBS_ENABLED=1 DD_LLMOBS_ML_APP=br-chat \
 DD_API_KEY="自分のAPI Key" DD_SITE="datadoghq.com" \
 DD_LLMOBS_AGENTLESS_ENABLED=1 ddtrace-run python br-chat.py
 ```
