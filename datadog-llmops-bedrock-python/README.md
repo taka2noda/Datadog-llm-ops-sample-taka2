@@ -16,6 +16,8 @@ pip install ddtrace
 
 LLM Observability requires a Datadog API key
 
+anthropic.claude-3-haiku is enabled on AWS Bedrock
+
 ### Command-line setup
 
 Enable LLM Observability by running your application using the `ddtrace-run` command and specifying the required environment variables.

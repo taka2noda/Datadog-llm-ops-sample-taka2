@@ -1,10 +1,10 @@
-#AWS Python SDK(boto3) ライブラリの読み込み
+#Import AWS Python SDK(boto3) library
 import boto3
 
-# Amazon Bedrock Runtime クライアントを作成
+# Create Amazon Bedrock Runtime client
 brt = boto3.client('bedrock-runtime')
 
-# JSON ライブラリの読み込み
+# Import JSON library
 import json
 
 body=json.dumps({
