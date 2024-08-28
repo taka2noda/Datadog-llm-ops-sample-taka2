@@ -35,6 +35,10 @@ DD_API_KEY="自分のAPI Key" DD_SITE="datadoghq.com" DD_LLMOBS_AGENTLESS_ENABLE
 ddtrace-run python br-chat.py
 ```
 
+### Datadog Setting
+
+Once LLM Trace is sent to Datadog, you need to enable "Evaluations" at "Configuration" tab
+
 ### Command history
 ```
 [cloudshell-user@ip-10- ~]$ ls
