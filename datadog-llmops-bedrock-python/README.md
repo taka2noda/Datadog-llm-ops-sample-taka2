@@ -37,7 +37,8 @@ ddtrace-run python br-chat.py
 
 ### Datadog Setting
 
-Once LLM Trace is sent to Datadog, you need to enable "Evaluations" at "Configuration" tab
+Once LLM Trace is sent to Datadog, you need to enable "Evaluations" at "Configuration" tab to enable "Evaluations" for prompts.
+![Datadog-llmOps-Evaluation-Security-Enable](https://github.com/user-attachments/assets/60e4b41a-9729-477d-a838-470ddf073c92)
 
 ### Command history
 ```
