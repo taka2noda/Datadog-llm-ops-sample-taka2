@@ -8,10 +8,11 @@ On AWS Cloud9 or Cloud Shell
 
 ### Prerequisites
 
-The latest `ddtrace` package must be installed:
+The latest `ddtrace` and `bot3` package must be installed:
 
 ```
 pip install ddtrace
+pip install bot3
 ```
 
 LLM Observability requires a Datadog API key
