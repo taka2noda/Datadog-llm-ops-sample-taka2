@@ -1,0 +1,8 @@
+# 環境
+AWS Cloud9 t3.small, SSM
+
+# コンテナイメージをビルド
+docker build -t rails-app .
+
+# コンテナイメージの確認
+docker image ls

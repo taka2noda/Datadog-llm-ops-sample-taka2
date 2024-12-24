@@ -1,0 +1,123 @@
+{
+    "family": "taka2-ecs-handson-task",
+    "containerDefinitions": [
+        {
+            "name": "taka2-rails-app",
+            "image": "601427279990.dkr.ecr.ap-northeast-3.amazonaws.com/taka2/ecs-handson-rails-app:latest",
+            "cpu": 126,
+            "portMappings": [
+                {
+                    "name": "taka2-rails-app-3000-tcp",
+                    "containerPort": 3000,
+                    "hostPort": 3000,
+                    "protocol": "tcp",
+                    "appProtocol": "http"
+                }
+            ],
+            "essential": true,
+            "environment": [
+                {
+                    "name": "DD_SERVICE",
+                    "value": "taka2-ecs-handson"
+                },
+                {
+                    "name": "DD_VERSION",
+                    "value": "1"
+                },
+                {
+                    "name": "DD_ENV",
+                    "value": "dev"
+                }
+            ],
+            "mountPoints": [],
+            "volumesFrom": [],
+            "logConfiguration": {
+                "logDriver": "awsfirelens",
+                "options": {
+                    "dd_message_key": "log",
+                    "apikey": "<API KEY>d1",
+                    "provider": "ecs",
+                    "dd_service": "firelens-test",
+                    "Host": "http-intake.logs.datadoghq.com",
+                    "TLS": "on",
+                    "dd_source": "redis",
+                    "dd_tags": "project:fluentbit",
+                    "Name": "datadog"
+                }
+            },
+            "systemControls": []
+        },
+        {
+            "name": "datadog-agent",
+            "image": "public.ecr.aws/datadog/agent:latest",
+            "cpu": 126,
+            "portMappings": [],
+            "essential": true,
+            "environment": [
+                {
+                    "name": "ECS_FARGATE",
+                    "value": "true"
+                },
+                {
+                    "name": "DD_APM_ENABLED",
+                    "value": "true"
+                },
+                {
+                    "name": "DD_API_KEY",
+                    "value": "<API KEY>"
+                },
+                {
+                    "name": "DD_PROCESS_AGENT_PROCESS_COLLECTION_ENABLED",
+                    "value": "true"
+                }
+            ],
+            "mountPoints": [],
+            "volumesFrom": [],
+            "systemControls": []
+        },
+        {
+            "name": "log_router",
+            "image": "amazon/aws-for-fluent-bit:stable",
+            "cpu": 0,
+            "portMappings": [],
+            "essential": true,
+            "environment": [],
+            "mountPoints": [],
+            "volumesFrom": [],
+            "user": "0",
+            "systemControls": [],
+            "firelensConfiguration": {
+                "type": "fluentbit",
+                "options": {
+                    "enable-ecs-log-metadata": "true"
+                }
+            }
+        }
+    ],
+    "tags": [
+        {
+            "key": "PrincipalId",
+            "value": "AROAYYB64AB3JW3VETDNL"
+        },
+        {
+            "key": "User",
+            "value": "takaaki.tsunoda@datadoghq.com"
+        }
+    ],
+    "taskRoleArn": "arn:aws:iam::601427279990:role/ecsTaskExecutionRole",
+    "executionRoleArn": "arn:aws:iam::601427279990:role/ecsTaskExecutionRole",
+    "networkMode": "awsvpc",
+    "volumes": [],
+    "placementConstraints": [],
+    "requiresCompatibilities": [
+        "FARGATE"
+    ],
+    "cpu": "256",
+    "memory": "512",
+    "pidMode": "task",
+    "runtimePlatform": {
+        "cpuArchitecture": "X86_64",
+        "operatingSystemFamily": "LINUX"
+    },
+    "enableFaultInjection": false
+}
