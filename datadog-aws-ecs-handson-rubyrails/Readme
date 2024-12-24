@@ -6,3 +6,6 @@ docker build -t rails-app .
 
 # コンテナイメージの確認
 docker image ls
+
+# Ref
+https://catalog.workshops.aws/ecs-web-application-handson/ja-JP/ecs/ecr
