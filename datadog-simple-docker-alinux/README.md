@@ -1,4 +1,4 @@
-# application docker
+# Step1. Build Docker Application
 Ref:
 https://zenn.dev/schnell/articles/56a1f6bed65688
 
@@ -53,7 +53,7 @@ docker run -d --name dockerdemo -e name='schnell' -p 80:8080 dockerdemo
 Access application
 http://<Public IP>:80/dockerdemo
 
-# Datadog Agent install
+# Step2. Insltall Datadog Docker Agent
 docs:
 https://docs.datadoghq.com/ja/containers/docker/?tab=amazonlinux&site=us
 
