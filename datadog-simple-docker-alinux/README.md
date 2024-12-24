@@ -53,6 +53,9 @@ docker run -d --name dockerdemo -e name='schnell' -p 80:8080 dockerdemo
 Access application
 http://<Public IP>:80/dockerdemo
 
+![image](https://github.com/user-attachments/assets/17bb64ba-a305-4d2c-9fd7-fbf1189487a3)
+
+
 # Step2. Insltall Datadog Docker Agent
 docs:
 https://docs.datadoghq.com/ja/containers/docker/?tab=amazonlinux&site=us
