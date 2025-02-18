@@ -1,0 +1,127 @@
+{
+    "taskDefinitionArn": "arn:aws:ecs:ap-northeast-3:601427279990:task-definition/taka2-datadog-agent-task:5",
+    "containerDefinitions": [
+        {
+            "name": "taka2-datadog-agent",
+            "image": "public.ecr.aws/datadog/agent:latest",
+            "cpu": 100,
+            "memory": 512,
+            "portMappings": [
+                {
+                    "containerPort": 8126,
+                    "hostPort": 8126,
+                    "protocol": "tcp"
+                }
+            ],
+            "essential": true,
+            "environment": [
+                {
+                    "name": "DD_LOGS_ENABLED",
+                    "value": "true"
+                },
+                {
+                    "name": "DD_API_KEY",
+                    "value": "<DD_API_KEY>"
+                },
+                {
+                    "name": "DD_ECS_TASK_COLLECTION_ENABLED",
+                    "value": "true"
+                },
+                {
+                    "name": "DD_SITE",
+                    "value": "datadoghq.com"
+                },
+                {
+                    "name": "DD_LOGS_CONFIG_CONTAINER_COLLECT_ALL",
+                    "value": "true"
+                },
+                {
+                    "name": "DD_PROCESS_AGENT_ENABLED",
+                    "value": "true"
+                }
+            ],
+            "mountPoints": [
+                {
+                    "sourceVolume": "docker_sock",
+                    "containerPath": "/var/run/docker.sock",
+                    "readOnly": true
+                },
+                {
+                    "sourceVolume": "cgroup",
+                    "containerPath": "/host/sys/fs/cgroup",
+                    "readOnly": true
+                },
+                {
+                    "sourceVolume": "proc",
+                    "containerPath": "/host/proc",
+                    "readOnly": true
+                },
+                {
+                    "sourceVolume": "pointdir",
+                    "containerPath": "/opt/datadog-agent/run",
+                    "readOnly": false
+                },
+                {
+                    "sourceVolume": "containers_root",
+                    "containerPath": "/var/lib/docker/containers",
+                    "readOnly": true
+                }
+            ],
+            "volumesFrom": [],
+            "systemControls": []
+        }
+    ],
+    "family": "taka2-datadog-agent-task",
+    "revision": 5,
+    "volumes": [
+        {
+            "name": "docker_sock",
+            "host": {
+                "sourcePath": "/var/run/docker.sock"
+            }
+        },
+        {
+            "name": "proc",
+            "host": {
+                "sourcePath": "/proc/"
+            }
+        },
+        {
+            "name": "cgroup",
+            "host": {
+                "sourcePath": "/sys/fs/cgroup/"
+            }
+        },
+        {
+            "name": "pointdir",
+            "host": {
+                "sourcePath": "/opt/datadog-agent/run"
+            }
+        },
+        {
+            "name": "containers_root",
+            "host": {
+                "sourcePath": "/var/lib/docker/containers/"
+            }
+        }
+    ],
+    "status": "ACTIVE",
+    "placementConstraints": [],
+    "compatibilities": [
+        "EXTERNAL",
+        "EC2"
+    ],
+    "registeredAt": "2024-12-26T07:54:18.191Z",
+    "registeredBy": "arn:aws:sts::601427279990:assumed-role/AWSReservedSSO_account-admin_18a9d6e974997719/takaaki.tsunoda@datadoghq.com",
+    "enableFaultInjection": false,
+    "tags": [
+        {
+            "key": "PrincipalId",
+            "value": "<Auto Filled>"
+        },
+        {
+            "key": "User",
+            "value": "takaaki.tsunoda@datadoghq.com"
+        }
+    ]
+}

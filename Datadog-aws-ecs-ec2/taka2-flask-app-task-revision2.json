@@ -1,0 +1,120 @@
+{
+    "taskDefinitionArn": "arn:aws:ecs:ap-northeast-3:601427279990:task-definition/taka2-flask-app-task:2",
+    "containerDefinitions": [
+        {
+            "name": "taka2-ecs-ec2-flask",
+            "image": "601427279990.dkr.ecr.ap-northeast-3.amazonaws.com/taka2/ecs-ec2-example:latest",
+            "cpu": 0,
+            "portMappings": [
+                {
+                    "name": "taka2-ecs-ec2-flask-5050-tcp",
+                    "containerPort": 5050,
+                    "hostPort": 5050,
+                    "protocol": "tcp",
+                    "appProtocol": "http"
+                }
+            ],
+            "essential": true,
+            "entryPoint": [
+                "sh",
+                "-c",
+                "export DD_AGENT_HOST=$(curl http://169.254.169.254/latest/meta-data/local-ipv4); ddtrace-run python3 hello.py"
+            ],
+            "environment": [
+                {
+                    "name": "DD_SERVICE",
+                    "value": "taka2-ecs-ec2"
+                },
+                {
+                    "name": "DD_ENV",
+                    "value": "dev"
+                },
+                {
+                    "name": "DD_VERSION",
+                    "value": "1.0"
+                }
+            ],
+            "mountPoints": [],
+            "volumesFrom": [],
+            "dockerLabels": {
+                "com.datadoghq.tags.service": "taka2-ecs-ec2",
+                "com.datadoghq.tags.version": "1.0",
+                "com.datadoghq.tags.env": "dev"
+            },
+            "logConfiguration": {
+                "logDriver": "awslogs",
+                "options": {
+                    "awslogs-group": "/ecs/taka2-flask-app-task",
+                    "mode": "non-blocking",
+                    "awslogs-create-group": "true",
+                    "max-buffer-size": "25m",
+                    "awslogs-region": "ap-northeast-3",
+                    "awslogs-stream-prefix": "ecs"
+                }
+            },
+            "systemControls": []
+        }
+    ],
+    "family": "taka2-flask-app-task",
+    "executionRoleArn": "arn:aws:iam::601427279990:role/ecsTaskExecutionRole",
+    "networkMode": "awsvpc",
+    "revision": 2,
+    "volumes": [],
+    "status": "ACTIVE",
+    "requiresAttributes": [
+        {
+            "name": "com.amazonaws.ecs.capability.logging-driver.awslogs"
+        },
+        {
+            "name": "ecs.capability.execution-role-awslogs"
+        },
+        {
+            "name": "com.amazonaws.ecs.capability.ecr-auth"
+        },
+        {
+            "name": "com.amazonaws.ecs.capability.docker-remote-api.1.19"
+        },
+        {
+            "name": "com.amazonaws.ecs.capability.docker-remote-api.1.28"
+        },
+        {
+            "name": "ecs.capability.execution-role-ecr-pull"
+        },
+        {
+            "name": "com.amazonaws.ecs.capability.docker-remote-api.1.18"
+        },
+        {
+            "name": "ecs.capability.task-eni"
+        },
+        {
+            "name": "com.amazonaws.ecs.capability.docker-remote-api.1.29"
+        }
+    ],
+    "placementConstraints": [],
+    "compatibilities": [
+        "EC2",
+        "FARGATE"
+    ],
+    "requiresCompatibilities": [
+        "EC2"
+    ],
+    "cpu": "1024",
+    "memory": "3072",
+    "runtimePlatform": {
+        "cpuArchitecture": "X86_64",
+        "operatingSystemFamily": "LINUX"
+    },
+    "registeredAt": "2024-12-26T07:21:22.234Z",
+    "registeredBy": "arn:aws:sts::601427279990:assumed-role/AWSReservedSSO_account-admin_18a9d6e974997719/takaaki.tsunoda@datadoghq.com",
+    "enableFaultInjection": false,
+    "tags": [
+        {
+            "key": "PrincipalId",
+            "value": "<Auto Filled>"
+        },
+        {
+            "key": "User",
+            "value": "takaaki.tsunoda@datadoghq.com"
+        }
+    ]
+}

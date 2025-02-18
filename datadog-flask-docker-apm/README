@@ -1,0 +1,13 @@
+pip install flask
+
+mkdir apm-flask
+
+docker build -t lab .
+
+docker run -p 5000:5000 --add-host=host.docker.internal:host-gateway lab
+
+0.0.0.0:5000/
+
+Hello APM 101
+
+CTRL + C

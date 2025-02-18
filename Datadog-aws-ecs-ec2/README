@@ -1,0 +1,13 @@
+On Cloud9
+
+mkdir taka2-ecs-ec2-example && cd taka2-ecs-ec2-example
+
+make files
+
+make ecr repo and push by following "View push commands"
+
+以下失敗。
+
+ECSオプティマイズドAMIを使用してEC2インスタンスを起動
+
+Register external instancesのコマンドをroot実行
